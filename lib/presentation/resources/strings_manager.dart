@@ -23,11 +23,13 @@ class AppStrings {
 
   static const email = "Email ";
   static const password = "Password ";
-  static const enterValidPassword = "Please enter a valid password ";
-  static const usernameError = "Please enter your username ";
-  static const passwordError = "Please enter your password ";
+  static const enterValidPassword = "Please enter a valid Password ";
+  static const usernameError = "Please enter your Email ";
+  static const emailError = "Enter a valid email";
+  static const passwordError = "Please enter your Password ";
   static const forgotPassword = "Forgot Password ";
   static const login = "Login ";
   static const signUp = "Sign up ";
+
   static const  doNotHaveAccount = "Don't have an Account?";
 }

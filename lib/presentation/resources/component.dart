@@ -171,8 +171,8 @@ class defultTextFormField extends StatelessWidget {
 
         label: Text(
           label,
-          style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                color: ColorManager.lightGrey,
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                color: ColorManager.grey1,
               ),
         ),
         contentPadding: const EdgeInsets.only(
@@ -207,7 +207,7 @@ OutlineInputBorder _outlineInputBorder() {
 OutlineInputBorder _outlineInputBorderStyle() {
   return OutlineInputBorder(
     borderSide: BorderSide(
-      color: ColorManager.lightGrey,
+      color: ColorManager.grey1,
       width: AppSize.s1,
     ),
     borderRadius: BorderRadius.all(
@@ -220,10 +220,10 @@ OutlineInputBorder _outlineInputBorderErrorStyle() {
   return const OutlineInputBorder(
     borderSide: BorderSide(
       color: Colors.red,
-      width: AppSize.s0,
+      width: AppSize.s1,
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(AppSize.s15),
+      Radius.circular(AppSize.s20),
     ),
   );
 }
@@ -338,7 +338,7 @@ class AuthTitleAndSubtitle extends StatelessWidget {
         ),
         SizedBox(height: mediaQueryHeight(context) / AppSize.s120),
         Text(
-          authSubtitle!,
+          authSubtitle,
           textAlign: TextAlign.justify,
           style: Theme.of(context).textTheme.titleSmall,
         ),

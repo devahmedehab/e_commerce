@@ -11,6 +11,7 @@ class ImageAssets{
   static const String rightArrowIc = "$imagePath/right_arrow_ic.svg";
   static const String male = "$imagePath/male.png";
   static const String female = "$imagePath/female.png";
+  static const String backGround = "$imagePath/me.jpeg";
 }
 
 

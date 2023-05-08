@@ -16,5 +16,7 @@ class ColorManager {
   static Color s = const Color(0xff989797);
   static Color disabledButton = const Color(0xff989797) ;
 
+  static Color lightBlue = const Color(0xFF31AAE2) ;
+
 
 }

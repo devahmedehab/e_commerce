@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:e_commerce/app/componant.dart';
 import 'package:e_commerce/presentation/onBoarding/view/onboarding_view.dart';
 import 'package:e_commerce/presentation/resources/assets_manager.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
+import 'package:e_commerce/presentation/resources/component.dart';
 import 'package:e_commerce/presentation/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 
