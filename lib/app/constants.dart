@@ -5,6 +5,8 @@ class Constants{
 
   static const int zero = 0;
   static const int apiTimeOut = 60*1000; // 1 min time out
-  static const String token = '';
+
 
 }
+  String token = '';
+var id = '';

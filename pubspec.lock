@@ -28,7 +28,7 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.1"
+    version: "8.1.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -85,13 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
-  conditional_builder:
+  conditional_builder_null_safety:
     dependency: "direct main"
     description:
-      name: conditional_builder
+      name: conditional_builder_null_safety
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "0.0.6"
   connectivity_plus:
     dependency: "direct main"
     description:
@@ -175,7 +175,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.10"
+    version: "5.1.2"
   email_validator:
     dependency: "direct main"
     description:
@@ -222,7 +222,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.3.3"
+    version: "8.1.2"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -288,7 +288,14 @@ packages:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.8"
+    version: "8.2.1"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.5.0"
   hexcolor:
     dependency: "direct main"
     description:
@@ -302,14 +309,14 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.2"
+    version: "0.13.5"
   http_parser:
     dependency: transitive
     description:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.4"
+    version: "4.0.2"
   image:
     dependency: transitive
     description:
@@ -330,7 +337,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.0"
+    version: "0.18.1"
   js:
     dependency: transitive
     description:
@@ -345,13 +352,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
-  jumping_bottom_nav_bar:
-    dependency: "direct main"
-    description:
-      name: jumping_bottom_nav_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   matcher:
     dependency: transitive
     description:
@@ -372,7 +372,7 @@ packages:
       name: material_design_icons_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.5955"
+    version: "6.0.7096"
   meta:
     dependency: transitive
     description:
@@ -464,13 +464,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.6"
-  pedantic:
-    dependency: transitive
-    description:
-      name: pedantic
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.11.1"
   petitparser:
     dependency: transitive
     description:
@@ -664,14 +657,14 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.4.56"
+    version: "21.2.3"
   syncfusion_flutter_gauges:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_gauges
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.4.56"
+    version: "21.2.3"
   synchronized:
     dependency: transitive
     description:

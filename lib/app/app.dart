@@ -1,6 +1,8 @@
 
+import 'package:e_commerce/presentation/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../presentation/resources/routs_manager.dart';
 
 class MyApp extends StatefulWidget {
 
@@ -20,23 +22,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-
-        /*BlocProvider(
-          create: (BuildContext context) => ShopCubit()
-            ..getHomeData()
-            ..getCategoriesModel()
-            ..getFavoritesModel()
-            ..getUserData()
-
-        ),*/
-      ],
-      child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-            ),
-
-
+    return MaterialApp(
+      //home: ,
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
+      theme: getApplicationTheme(),
     );
   }
 }

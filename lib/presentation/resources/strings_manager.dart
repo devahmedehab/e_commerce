@@ -21,11 +21,12 @@ class AppStrings {
   static const skip = " Skip";
   //Authentication
 
-  static const username = "Username ";
+  static const email = "Email ";
   static const password = "Password ";
+  static const enterValidPassword = "Please enter a valid password ";
   static const usernameError = "Please enter your username ";
   static const passwordError = "Please enter your password ";
-  static const forgetPassword = "Forget Password ";
+  static const forgotPassword = "Forgot Password ";
   static const login = "Login ";
   static const signUp = "Sign up ";
   static const  doNotHaveAccount = "Don't have an Account?";

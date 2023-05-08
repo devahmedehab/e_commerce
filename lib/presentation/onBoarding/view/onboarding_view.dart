@@ -1,3 +1,4 @@
+import 'package:e_commerce/app/componant.dart';
 import 'package:e_commerce/data/network/cache_helper.dart';
 import 'package:e_commerce/presentation/resources/assets_manager.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
@@ -5,6 +6,8 @@ import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../resources/routs_manager.dart';
 
 
 class BoardingModel {
@@ -19,12 +22,13 @@ class BoardingModel {
   });
 }
 
-class OnBoardingScreen extends StatefulWidget {
+class OnBoardingView extends StatefulWidget {
+  const OnBoardingView({Key? key}) : super(key: key);
   @override
-  _OnBoardingScreenState createState() => _OnBoardingScreenState();
+  _OnBoardingViewState createState() => _OnBoardingViewState();
 }
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
+class _OnBoardingViewState extends State<OnBoardingView> {
 
   var boardController = PageController();
 
@@ -50,7 +54,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void submit(){
     CacheHelper.saveData(key: AppStrings.onBoarding, value: true).then((value) {
       if(value){
-       // navigateAndFinish(context, ShopLoginScreen(),);
+       Navigator.pushReplacementNamed(context, Routes.loginRoute);
+       // navigateAndFinish(context, Routes.loginRoute);
       }
     });
 
