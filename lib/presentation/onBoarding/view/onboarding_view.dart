@@ -6,6 +6,7 @@ import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../resources/component.dart';
 import '../../resources/routs_manager.dart';
 
 
@@ -53,8 +54,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   void submit(){
     CacheHelper.saveData(key: AppStrings.onBoarding, value: true).then((value) {
       if(value){
-       Navigator.pushReplacementNamed(context, Routes.loginRoute);
-       // navigateAndFinish(context, Routes.loginRoute);
+
+        navigateAndFinish(context, Routes.loginRoute);
       }
     });
 
@@ -130,13 +131,15 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     {
                       boardController.nextPage(
                         duration: Duration(
-                          milliseconds: AppSize.s700,
+                          milliseconds: AppTime.t700,
                         ),
                         curve: Curves.fastLinearToSlowEaseIn,
                       );
                     }
                   },
+                  backgroundColor: ColorManager.primary,
                   child: Icon(Icons.arrow_forward_ios),
+
                 ),
               ],
             ),

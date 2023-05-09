@@ -5,13 +5,13 @@ import 'package:e_commerce/presentation/resources/end_point.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ShopLoginCubit extends Cubit<ShopLoginStates>
+class LoginCubit extends Cubit<LoginStates>
 {
-  ShopLoginCubit() :super (ShopLoginInitialState());
+  LoginCubit() :super (LoginInitialState());
 
-  static  ShopLoginCubit get(context) => BlocProvider.of(context );
+  static  LoginCubit get(context) => BlocProvider.of(context );
 
-  ShopLoginModel? loginModel;
+  LoginModel? loginModel;
 
   void userLogin({
     required String email,
@@ -19,7 +19,7 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>
 
   })
   {
-    emit(ShopLoginLoadingState());
+    emit(LoginLoadingState());
     DioHelper.postData(
       url: LOGIN,
       data:{
@@ -28,11 +28,11 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>
       },
     ).then((value) {
       print(value.data);
-     loginModel= ShopLoginModel.fromJson(value.data);
-     emit(ShopLoginSuccessState(loginModel!));
+     loginModel= LoginModel.fromJson(value.data);
+     emit(LoginSuccessState(loginModel!));
     }).catchError((error){
       print(error.toString());
-      emit(ShopLoginErrorState(error.toString()));
+      emit(LoginErrorState(error.toString()));
     });
   }
   IconData suffix = Icons.visibility_outlined;
@@ -42,6 +42,6 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>
   {
     isPassword= !isPassword;
     suffix =isPassword? Icons.visibility_outlined:Icons.visibility_off_outlined;
-    emit(ShopChangePasswordState());
+    emit(ChangePasswordState());
   }
 }

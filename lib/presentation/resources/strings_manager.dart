@@ -22,14 +22,21 @@ class AppStrings {
   //Authentication
 
   static const email = "Email ";
+  static const name = "Name ";
+  static const phone = "Phone ";
   static const password = "Password ";
+  static const confirmPassword = "Confirm Password ";
   static const enterValidPassword = "Please enter a valid Password ";
   static const usernameError = "Please enter your Email ";
+  static const nameError = "Please enter your Name ";
+  static const phoneError = "Please enter your phone ";
   static const emailError = "Enter a valid email";
   static const passwordError = "Please enter your Password ";
+  static const passwordError2 = "Password don\'t match";
   static const forgotPassword = "Forgot Password ";
   static const login = "Login ";
-  static const signUp = "Sign up ";
+  static const register = "Register ";
 
   static const  doNotHaveAccount = "Don't have an Account?";
+  static const  textTag = "TextTag";
 }

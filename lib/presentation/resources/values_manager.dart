@@ -24,6 +24,7 @@ class AppPadding {
 }
 class AppTime {
   static const double t2 = 2.0;
+  static const int t700 = 700;
 
 
   static const double p100 = 100.0;

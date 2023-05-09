@@ -12,8 +12,11 @@ class ColorManager {
   static Color grey1 = const Color(0xff8d8d8d);
   static Color grey2 = const Color(0xff797979);
   static Color white = const Color(0xffFFFFFF);
-  static Color error = const Color(0xffe61f34);
+
   static Color s = const Color(0xff989797);
+  static Color success = const Color(0x444caf50) ;
+  static Color error = const Color(0xffe61f34);
+  static Color amber = const Color(0xFFFFB300) ;
   static Color disabledButton = const Color(0xff989797) ;
 
   static Color lightBlue = const Color(0xFF31AAE2) ;

@@ -1,24 +1,24 @@
 
 import 'package:e_commerce/presentation/login/view_model/login_model.dart';
 
-abstract class ShopLoginStates{}
+abstract class LoginStates{}
 
-class ShopLoginInitialState extends ShopLoginStates {}
+class LoginInitialState extends LoginStates {}
 
-class ShopLoginLoadingState extends ShopLoginStates {}
+class LoginLoadingState extends LoginStates {}
 
-class ShopLoginSuccessState extends ShopLoginStates
+class LoginSuccessState extends LoginStates
 {
-  final ShopLoginModel loginModel;
+  final LoginModel loginModel;
 
-  ShopLoginSuccessState(this.loginModel);
+  LoginSuccessState(this.loginModel);
 
 }
 
-class ShopLoginErrorState extends ShopLoginStates
+class LoginErrorState extends LoginStates
 {
   final String error;
 
-  ShopLoginErrorState(this.error);
+  LoginErrorState(this.error);
 }
-class ShopChangePasswordState extends ShopLoginStates {}
+class ChangePasswordState extends LoginStates {}

@@ -1,10 +1,10 @@
-class ShopLoginModel
+class LoginModel
 {
  late bool status;
  late String message;
  late UserData data;
 
-  ShopLoginModel.fromJson(Map<String,dynamic> json)
+  LoginModel.fromJson(Map<String,dynamic> json)
   {
     status =json['status'];
     message =json['message'];

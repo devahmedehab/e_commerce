@@ -125,6 +125,8 @@ class defultTextFormField extends StatelessWidget {
     this.hintColor,
     this.icon,
     this.suffixIcon,
+    this.prefixIcon,
+
     this.textDirection,
     required this.isObsecured,
   }) : super(key: key);
@@ -138,6 +140,7 @@ class defultTextFormField extends StatelessWidget {
   Color? hintColor;
   Widget? icon;
   Widget? suffixIcon;
+  Widget? prefixIcon;
   TextDirection? textDirection;
   int? maxLines;
   bool isObsecured = false;
@@ -159,6 +162,7 @@ class defultTextFormField extends StatelessWidget {
             height: AppSize.s2,
           ),
       decoration: InputDecoration(
+
         alignLabelWithHint: true,
         isCollapsed: true,
         filled: true,
@@ -181,6 +185,7 @@ class defultTextFormField extends StatelessWidget {
           bottom: AppPadding.p20,
         ),
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
         focusedBorder: _outlineInputBorder(),
         enabledBorder: _outlineInputBorderStyle(),
         errorBorder: _outlineInputBorderErrorStyle(),
@@ -232,15 +237,15 @@ void navigateAndFinish(
   context,
   widget,
 ) =>
-    Navigator.pushAndRemoveUntil(
+    Navigator.pushReplacementNamed(
       context,
-      MaterialPageRoute(
-        builder: (context) => widget,
-      ),
-      (route) {
-        return false;
-      },
+      widget
     );
+
+void navigateTo(context, widget) => Navigator.pushNamed(
+  context,
+  widget
+);
 
 void showToast({
   required String text,
@@ -262,13 +267,13 @@ Color chooseToastColor(ToastStates state) {
   Color color;
   switch (state) {
     case ToastStates.SUCCESS:
-      color = Colors.green;
+      color = ColorManager.success;
       break;
     case ToastStates.ERROR:
-      color = Colors.red;
+      color = ColorManager.error;
       break;
     case ToastStates.WARNING:
-      color = Colors.amber;
+      color = ColorManager.amber;
       break;
   }
 

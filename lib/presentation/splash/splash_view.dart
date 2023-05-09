@@ -6,6 +6,8 @@ import 'package:e_commerce/presentation/resources/component.dart';
 import 'package:e_commerce/presentation/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../resources/routs_manager.dart';
+
 
 
 class SplashView extends StatefulWidget {
@@ -25,7 +27,7 @@ class _SplashViewState extends State<SplashView> {
     );
   }
   _goNext(){
-    navigateAndFinish(context, OnBoardingView());
+    navigateAndFinish(context, Routes.onBoardingRoute);
   }
   @override
   void initState() {
