@@ -84,7 +84,7 @@ class RegisterCubit extends Cubit<RegisterStates>
 
 
 
-      emit(SendOTPSuccessState(loginModel!));
+      emit(SendOTPSuccessState(loginModel));
     }).catchError((error) {
       print(error.toString());
       emit(SendOTPErrorState(error.toString()));

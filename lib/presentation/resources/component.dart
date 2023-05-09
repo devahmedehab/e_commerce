@@ -212,7 +212,7 @@ OutlineInputBorder _outlineInputBorder() {
 OutlineInputBorder _outlineInputBorderStyle() {
   return OutlineInputBorder(
     borderSide: BorderSide(
-      color: ColorManager.grey1,
+      color: ColorManager.grey,
       width: AppSize.s1,
     ),
     borderRadius: BorderRadius.all(
@@ -222,9 +222,9 @@ OutlineInputBorder _outlineInputBorderStyle() {
 }
 
 OutlineInputBorder _outlineInputBorderErrorStyle() {
-  return const OutlineInputBorder(
+  return  OutlineInputBorder(
     borderSide: BorderSide(
-      color: Colors.red,
+      color: ColorManager.error,
       width: AppSize.s1,
     ),
     borderRadius: BorderRadius.all(

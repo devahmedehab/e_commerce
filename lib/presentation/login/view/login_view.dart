@@ -60,163 +60,145 @@ class _LoginViewState extends State<LoginView> {
           builder: (context, state) {
             timeDilation=AppTime.t2;
             return Scaffold(
-              body: Stack(
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage(ImageAssets.backGround,),
-                            fit: BoxFit.cover,
-                          )
-                      ),
-                      child: BackdropFilter(filter:
-                      ImageFilter.blur(
-                        sigmaX:10,
-                        sigmaY:10.5,
-                      ),
-                        child: Container(
-                          color: ColorManager.primary.withOpacity(.3),
-                        ),)
-                  ),
-                  Center(
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.all(AppPadding.p15),
-                      child: Form(
-                        key: LoginView._formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
 
-                            Hero(
-                              tag: 'TextTag',
-                              child: Text(AppStrings.login,
-                                style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    color: Colors.white,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 30
-                                ),
+              body:  Center(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.all(AppPadding.p15),
+                  child: Form(
+                    key: LoginView._formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
+                        Hero(
+                          tag: AppStrings.textTag,
+                          child: Text(AppStrings.login,
+                            style:
+                            Theme.of(context).textTheme.bodyText1!.copyWith(
+                                color: ColorManager.primary,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w700,
+                                fontSize: AppSize.s30
+                            ),
+
+                          ),
+                        ),
+                        SizedBox(height: AppSize.s50,),
+                        defultTextFormField(
+                          controller: LoginView.emailController,
+                          label: AppStrings.email,
+                          // hint: AppStrings.email,
+                          hintColor: ColorManager.lightGrey,
+                          inputType: TextInputType.emailAddress,
+                          textDirection: TextDirection.ltr,
+                          isObsecured: false,
+                          validator: (email) {
+                            if (email!.isEmpty) {
+                              return AppStrings.usernameError;
+                            } else if (!EmailValidator.validate(email)) {
+                              return AppStrings.emailError;
+                            } else
+                              return null;
+                          },
+                        ),
+                        SizedBox(height: mediaQueryHeight(context) / AppSize.s28),
+                        defultTextFormField(
+                          isObsecured: LoginCubit.get(context).isPassword,
+                          suffixIcon: IconButton(
+
+                              icon: LoginCubit.get(context).isPassword
+                                  ? Icon(
+                                Icons.visibility_off,
+                                color: ColorManager.grey1,
+                              )
+                                  : Icon(
+                                Icons.visibility,
+                                color: ColorManager.primary,
                               ),
-                            ),
-                            SizedBox(height: AppSize.s50,),
-                            defultTextFormField(
-                              controller: LoginView.emailController,
-                              label: AppStrings.email,
-                              // hint: AppStrings.email,
-                              hintColor: ColorManager.lightGrey,
-                              inputType: TextInputType.emailAddress,
-                              textDirection: TextDirection.ltr,
-                              isObsecured: false,
-                              validator: (email) {
-                                if (email!.isEmpty) {
-                                  return AppStrings.usernameError;
-                                } else if (!EmailValidator.validate(email)) {
-                                  return AppStrings.emailError;
-                                } else
-                                  return null;
-                              },
-                            ),
-                            SizedBox(height: mediaQueryHeight(context) / AppSize.s28),
-                            defultTextFormField(
-                              isObsecured: LoginCubit.get(context).isPassword,
-                              suffixIcon: IconButton(
-
-                                  icon: LoginCubit.get(context).isPassword
-                                      ? Icon(
-                                    Icons.visibility_off,
-                                    color: ColorManager.grey1,
-                                  )
-                                      : Icon(
-                                    Icons.visibility,
-                                    color: ColorManager.primary,
-                                  ),
-                                  onPressed: () {
-                                    LoginCubit.get(context)
-                                        .changePasswordVisibility();
-                                  }),
-                              controller: LoginView.passwordController,
-                              label: AppStrings.password,
-                              // hint: AppStrings.passwordExample,
-                              hintColor: ColorManager.lightGrey,
-                              inputType: TextInputType.visiblePassword,
-                              textDirection: TextDirection.ltr,
-                              validator: (value) {
-                                if (value!.length < AppSize.s8) {
-                                  return AppStrings.enterValidPassword;
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                onPressed: () {
-                                  /*navigateTo(
+                              onPressed: () {
+                                LoginCubit.get(context)
+                                    .changePasswordVisibility();
+                              }),
+                          controller: LoginView.passwordController,
+                          label: AppStrings.password,
+                          // hint: AppStrings.passwordExample,
+                          hintColor: ColorManager.lightGrey,
+                          inputType: TextInputType.visiblePassword,
+                          textDirection: TextDirection.ltr,
+                          validator: (value) {
+                            if (value!.length < AppSize.s8) {
+                              return AppStrings.enterValidPassword;
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              /*navigateTo(
                                   context: context,
                                   screenRoute: Routes.forgetPasswordScreen,
                                 );*/
-                                },
-                                child: Text(
-                                  AppStrings.forgotPassword,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(
-                                    color: ColorManager.primary,
-                                  ),
-                                ),
+                            },
+                            child: Text(
+                              AppStrings.forgotPassword,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(
+                                color: ColorManager.primary,
                               ),
                             ),
-                            SizedBox(
-                              height: mediaQueryHeight(context) / AppSize.s80,
-                            ),
-                            ConditionalBuilder(
-                                condition: (state is LoginLoadingState),
-                                builder: (context) =>
-                                const CircularProgressIndicator(),
-                                fallback: (context) => MainButton(
-                                  title: AppStrings.login,
-                                  onPressed: () {
-                                    if (LoginView._formKey.currentState!.validate()) {
-                                      LoginCubit.get(context).userLogin(
-                                          email: LoginView.emailController.text.trim(),
-                                          password: LoginView.passwordController.text);
-                                    }else{
-                                      return null;
-                                    }
-                                  },
-                                )),
-                            SizedBox(height: mediaQueryHeight(context) / AppSize.s60),
-                            Center(
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: AppStrings.doNotHaveAccount,
-                                        style: Theme.of(context).textTheme.labelMedium,
-                                      ),
-                                      TextSpan(
-                                        text: ' ${AppStrings.register}',
-                                        style: TextStyle(
-                                            color: ColorManager.primary,
-                                            fontWeight: FontWeight.bold),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            navigateTo(context, Routes.registerRoute);
-
-                                          },
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ],
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) / AppSize.s80,
+                        ),
+                        ConditionalBuilder(
+                            condition: (state is LoginLoadingState),
+                            builder: (context) =>
+                            const CircularProgressIndicator(),
+                            fallback: (context) => MainButton(
+                              title: AppStrings.login,
+                              onPressed: () {
+                                if (LoginView._formKey.currentState!.validate()) {
+                                  LoginCubit.get(context).userLogin(
+                                      email: LoginView.emailController.text.trim(),
+                                      password: LoginView.passwordController.text);
+                                }else{
+                                  return null;
+                                }
+                              },
+                            )),
+                        SizedBox(height: mediaQueryHeight(context) / AppSize.s60),
+                        Center(
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: AppStrings.doNotHaveAccount,
+                                    style: Theme.of(context).textTheme.labelMedium,
+                                  ),
+                                  TextSpan(
+                                    text: ' ${AppStrings.register}',
+                                    style: TextStyle(
+                                        color: ColorManager.primary,
+                                        fontWeight: FontWeight.bold),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        navigateTo(context, Routes.registerRoute);
+
+                                      },
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             );
           },

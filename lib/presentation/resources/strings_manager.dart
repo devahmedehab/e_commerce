@@ -38,5 +38,6 @@ class AppStrings {
   static const register = "Register ";
 
   static const  doNotHaveAccount = "Don't have an Account?";
+  static const  alreadyHaveAccount = "Already have an Account?";
   static const  textTag = "TextTag";
 }
