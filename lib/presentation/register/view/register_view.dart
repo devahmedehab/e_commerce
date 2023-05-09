@@ -190,10 +190,10 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
 
                         defultTextFormField(
-                          isObsecured: RegisterCubit.get(context).isPassword,
+                          isObsecured: RegisterCubit.get(context).inPassword,
                           suffixIcon: IconButton(
 
-                              icon: RegisterCubit.get(context).isPassword
+                              icon: RegisterCubit.get(context).inPassword
                                   ? Icon(
                                 Icons.visibility_off,
                                 color: ColorManager.grey1,
@@ -204,7 +204,7 @@ class _RegisterViewState extends State<RegisterView> {
                               ),
                               onPressed: () {
                                 RegisterCubit.get(context)
-                                    .changePasswordVisibility();
+                                    .changePasswordVisibility2();
                               }),
                           controller: RegisterView.confirmPasswordController,
                           label: AppStrings.confirmPassword,
