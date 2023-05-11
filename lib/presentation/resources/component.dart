@@ -1,9 +1,11 @@
 import 'package:e_commerce/presentation/resources/color_manager.dart';
+import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../layout/view_model/cubit/cubit.dart';
 import 'assets_manager.dart';
 
 Widget defaultFormField(
@@ -351,4 +353,130 @@ class AuthTitleAndSubtitle extends StatelessWidget {
       ],
     );
   }
+}
+Widget buildListProduct( model, context,
+    {
+      bool isOldPrice =true,
+    }) {
+  return Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Container(
+      height: 120,
+
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            alignment: AlignmentDirectional.bottomStart,
+            children: [
+              Image(
+                image: NetworkImage(
+                  model.image,
+                ),
+                width: 120,
+                height: 120,
+
+
+              ),
+              if (model.discount != 0&& isOldPrice)
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  color: Colors.red[700],
+                  child: Text(
+                    'DISCOUNT',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  model.name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 14, height: 1.3),
+                ),
+                Spacer(),
+                Row(
+                  children: [
+                    Text(
+                      '${model.price.round()} EG',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: ColorManager.primary,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    if (model.discount != 0 && isOldPrice)
+                      Text(
+                        '${model.oldPrice.round()} ${AppStrings.eg}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey[700],
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        ShopCubit.get(context).changeFavorites(model.id);
+                      },
+                      icon: CircleAvatar(
+                        radius: 15,
+                        backgroundColor:
+                        ShopCubit.get(context).favorites[model.id]!
+                            ? ColorManager.primary
+                            : ColorManager.grey,
+                        child: Icon(
+                          Icons.favorite_border,
+                          size: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget myDivider() => Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 20.0,
+  ),
+  child: Container(
+    width: double.infinity,
+    height: 1.0,
+    color: Colors.grey[300],
+  ),
+);
+
+Widget buildListTile(String title,IconData icon,Function tabHandler){
+  return ListTile(
+    leading:Icon(icon,size: 25,) ,
+
+    title: Text(title,style: TextStyle(
+
+
+      fontFamily: '',
+      fontWeight: FontWeight.w700,
+    ),),
+    onTap:()=> tabHandler(),
+  );
 }

@@ -1,15 +1,11 @@
-import 'dart:ui';
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce/data/network/cache_helper.dart';
-import 'package:e_commerce/presentation/resources/assets_manager.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../app/constants.dart';
 import '../../../resources/component.dart';
 import '../../../resources/routs_manager.dart';
@@ -43,23 +39,23 @@ class _RegisterViewState extends State<RegisterView> {
         child: BlocConsumer<RegisterCubit, RegisterStates>(
           listener: (context, state) {
             if (state is RegisterSuccessState) {
-              if (state.loginModel.status) {
+              if (state.loginModel.status!) {
                // print(state.loginModel.message);
               //  print(state.loginModel.data.token);
 
                 CacheHelper.saveData(
                   key: 'token',
-                  value: state.loginModel.data.token,
+                  value: state.loginModel.data!.token,
                 ).then((value) {
-                  token = state.loginModel.data.token!;
+                  token = state.loginModel.data!.token!;
 
-                  Navigator.pushReplacementNamed(context, Routes.shopLayout);
+                  Navigator.pushReplacementNamed(context, Routes.layoutRoute);
                 });
               } else {
                 print(state.loginModel.message);
 
                 showToast(
-                  text: state.loginModel.message,
+                  text: state.loginModel.message!,
                   state: ToastStates.ERROR,
                 );
               }

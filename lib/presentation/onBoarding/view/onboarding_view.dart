@@ -8,19 +8,10 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../resources/component.dart';
 import '../../resources/routs_manager.dart';
+import '../viewmodel/onboarding_viewmodel.dart';
 
 
-class BoardingModel {
-  final String image;
-  final String title;
-  final String body;
 
-  BoardingModel({
-    required this.image,
-    required this.title,
-    required this.body,
-  });
-}
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -32,23 +23,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   var boardController = PageController();
 
-  List<BoardingModel> boarding = [
-    BoardingModel(
-      image: ImageAssets.onBoardingLogo1,
-      title: AppStrings.onBoardingTitle1,
-      body: AppStrings.onBoardingSubTitle1,
-    ),
-    BoardingModel(
-      image: ImageAssets.onBoardingLogo2,
-      title: AppStrings.onBoardingTitle2,
-      body: AppStrings.onBoardingSubTitle2,
-    ),
-    BoardingModel(
-      image: ImageAssets.onBoardingLogo3,
-      title: AppStrings.onBoardingTitle3,
-      body: AppStrings.onBoardingSubTitle3,
-    ),
-  ];
   bool isLast =false;
 
   void submit(){
@@ -69,9 +43,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         actions: [
           TextButton(
             onPressed:() {
-              submit;
+              submit();
             },
-            child:Text(AppStrings.skip),
+            child:Text(AppStrings.skip,
+            style: TextStyle(color: ColorManager.white),),
           ),
 
 

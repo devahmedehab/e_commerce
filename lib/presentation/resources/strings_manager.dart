@@ -40,4 +40,11 @@ class AppStrings {
   static const  doNotHaveAccount = "Don't have an Account?";
   static const  alreadyHaveAccount = "Already have an Account?";
   static const  textTag = "TextTag";
+  static const  eg = "EG";
+  static const String regExp = ".{1,800}";
+  static const String appName = "Store";
+  static const String home = "Home";
+  static const String categories = "Categories";
+  static const String favorite = "Favorite";
+  static const String settings = "Settings";
 }
