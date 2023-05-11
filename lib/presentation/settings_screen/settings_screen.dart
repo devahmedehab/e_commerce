@@ -8,7 +8,8 @@ class SettingsView extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
-      )
+      ),
+        body: Container(),
     );
   }
 

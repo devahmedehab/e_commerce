@@ -16,7 +16,7 @@ class Routes {
   static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
-  static const String settingsRoute = "/forgetPassword";
+  static const String settingsRoute = "/settings";
   static const String layoutRoute = "/main";
   static const String storeDetailsRouts = "/storeDetails";
   static const String searchRouts = "/search";
@@ -41,7 +41,7 @@ class RouteGenerator {
       case Routes.profileRouts:
         return MaterialPageRoute(builder: (_) =>  ProfileView());
       case Routes.settingsRoute:
-        return MaterialPageRoute(builder: (_) => const SettingsView());
+        return MaterialPageRoute(builder: (_) =>  SettingsView());
 
       /*
       case Routes.forgetPasswordRoute:

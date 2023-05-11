@@ -39,10 +39,10 @@ class _LayoutViewState extends State<LayoutView> {
             style: DrawerStyle.defaultStyle,
             showShadow: true,
             angle: -25.0,
-            drawerShadowsBackgroundColor: Colors.blueGrey,
+            drawerShadowsBackgroundColor: ColorManager.primary,
             slideWidth: MediaQuery.of(context).size.width * AppSize.s1,
             menuScreen: Container(
-              color: Colors.white,
+              color: ColorManager.white,
               child: ListView(
                 children: [
                   DrawerHeader(
@@ -98,12 +98,12 @@ class _LayoutViewState extends State<LayoutView> {
                       )),
 
                   //   myDivider(),
-                  SizedBox(
+                  /*SizedBox(
                     height: 30,
                   ),
-                  buildListTile("Main Screen", Icons.home_outlined, () {}),
+                  buildListTile("Main Screen", Icons.home_outlined, () {}),*/
                   SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   buildListTile(
                       "Profile", Icons.account_box_outlined, ()  {
@@ -116,7 +116,7 @@ class _LayoutViewState extends State<LayoutView> {
                     height: 15,
                   ),
                   buildListTile("Settings", Icons.settings_outlined, () {
-                   // navigateTo(context, Routes.settingsRoute);
+                    navigateTo(context, Routes.settingsRoute);
                   }),
                   SizedBox(
                     height: 15,
@@ -139,6 +139,13 @@ class _LayoutViewState extends State<LayoutView> {
                 title: Text(
                   AppStrings.appName,
                 ),
+                leading: IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    z.toggle!();
+                  },
+                ),
+                backgroundColor: ColorManager.primary,
                 actions: [
                   IconButton(
                     onPressed: () {
@@ -155,13 +162,16 @@ class _LayoutViewState extends State<LayoutView> {
               ),
               body: cubit.bottomScreen[cubit.currentIndex],
               bottomNavigationBar: BottomNavigationBar(
+                selectedItemColor: ColorManager.primary,
+                backgroundColor: ColorManager.white,
                 onTap: (index) {
                   cubit.changeBottom(index);
                 },
                 currentIndex: cubit.currentIndex,
                 items: [
+
                   BottomNavigationBarItem(
-                      backgroundColor: ColorManager.primary,
+
                       icon: Icon(
                         Icons.home,
                       ),
