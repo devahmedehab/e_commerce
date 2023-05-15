@@ -6,9 +6,9 @@ import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/constants.dart';
-import '../../layout/view_model/cubit/cubit.dart';
-import '../../layout/view_model/cubit/state.dart';
 import '../../resources/component.dart';
+import '../view_model/profile_cubit/profile_cubit.dart';
+import '../view_model/profile_cubit/profile_state.dart';
 
 class ProfileView extends StatelessWidget {
   static final formKey = GlobalKey<FormState>();
@@ -19,21 +19,24 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopCubit, ShopStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = ShopCubit.get(context);
+    return BlocConsumer<ProfileCubit, ProfileStates>(
+        listener: (context, state) {
+          var cubit = ProfileCubit.get(context);
           final String image;
-          nameController.text = cubit.userModel!.data!.name!;
-          emailController.text = cubit.userModel!.data!.email!;
-          phoneController.text = cubit.userModel!.data!.phone!;
-          image = cubit.userModel!.data!.image!;
+          nameController.text = cubit.profileModel!.data!.name!;
+          emailController.text = cubit.profileModel!.data!.email!;
+          phoneController.text = cubit.profileModel!.data!.phone!;
+          image = cubit.profileModel!.data!.image!;
+        },
+        builder: (context, state) {
+
           return Scaffold(
             appBar: AppBar(
               title: Text(AppStrings.profile),
               actions: [
                 IconButton(
                   onPressed: (){
+                    ProfileCubit.get(context).getUserData();
                navigateAndFinish(
                         context,
                         Routes.editProfileRouts
@@ -54,20 +57,20 @@ class ProfileView extends StatelessWidget {
                   key: formKey,
                   child: Column(
                     children: [
-                      if (state is UpdateLoadingState)
+                      /*if (state is ProfileUpdateLoadingState)
                         LinearProgressIndicator(),
                       SizedBox(
                         height: AppSize.s40,
-                      ),
-                      CircleAvatar(
+                      ),*/
+                     /* CircleAvatar(
                           radius: AppSize.s50,
                           backgroundColor: Colors.deepPurpleAccent,
                           child: CircleAvatar(
                               radius: AppSize.s50,
-                              backgroundImage: AssetImage(ImageAssets.male)
-                            /*NetworkImage(image)*/
+                              backgroundImage: AssetImage('')
+                            *//*NetworkImage(image)*//*
                           )
-                      ),
+                      ),*/
                      SizedBox(
                         height: AppSize.s20,
                         ),

@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce/data/network/cache_helper.dart';
+import 'package:e_commerce/presentation/layout/view_model/cubit/cubit.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
@@ -22,16 +23,15 @@ class LoginView extends StatelessWidget {
   static final emailController = TextEditingController();
   static final passwordController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-    bool? _hasInternet =false;
+    bool? _hasInternet = false;
     return BlocProvider(
         create: (BuildContext context) => LoginCubit(),
         child: BlocConsumer<LoginCubit, LoginStates>(
           listener: (context, state) {
             if (state is LoginSuccessState) {
-              if (state.loginModel.status!) {
+              if (state.loginModel.status !) {
                 print(state.loginModel.message);
                 print(state.loginModel.data!.token);
                 CacheHelper.saveData(
@@ -41,23 +41,19 @@ class LoginView extends StatelessWidget {
                   token = state.loginModel.data!.token!;
                   Navigator.pushReplacementNamed(context, Routes.layoutRoute);
                 });
-              } else if(state is LoginErrorState)
-              {
-                print(state.loginModel.message);
-
-                showToast(
-                  text: LoginCubit.get(context).loginModel!.message!,
-                  state: ToastStates.ERROR,
-                );
               }
+
+            }else  {
+              showToast(
+                text: LoginCubit.get(context).loginModel!.message!,
+                state: ToastStates.ERROR,
+              );
             }
           },
-
           builder: (context, state) {
-            timeDilation=AppTime.t2;
+            timeDilation = AppTime.t2;
             return Scaffold(
-
-              body:  Center(
+              body: Center(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.all(AppPadding.p15),
                   child: Form(
@@ -65,21 +61,23 @@ class LoginView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Hero(
                           tag: AppStrings.textTag,
-                          child: Text(AppStrings.login,
-                            style:
-                            Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                color: ColorManager.primary,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w700,
-                                fontSize: AppSize.s30
-                            ),
-
+                          child: Text(
+                            AppStrings.login,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(
+                                    color: ColorManager.primary,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: AppSize.s30),
                           ),
                         ),
-                        SizedBox(height: AppSize.s50,),
+                        SizedBox(
+                          height: AppSize.s50,
+                        ),
                         defultTextFormField(
                           controller: LoginView.emailController,
                           label: AppStrings.email,
@@ -97,20 +95,20 @@ class LoginView extends StatelessWidget {
                               return null;
                           },
                         ),
-                        SizedBox(height: mediaQueryHeight(context) / AppSize.s28),
+                        SizedBox(
+                            height: mediaQueryHeight(context) / AppSize.s28),
                         defultTextFormField(
                           isObsecured: LoginCubit.get(context).isPassword,
                           suffixIcon: IconButton(
-
                               icon: LoginCubit.get(context).isPassword
                                   ? Icon(
-                                Icons.visibility_off,
-                                color: ColorManager.grey1,
-                              )
+                                      Icons.visibility_off,
+                                      color: ColorManager.grey1,
+                                    )
                                   : Icon(
-                                Icons.visibility,
-                                color: ColorManager.primary,
-                              ),
+                                      Icons.visibility,
+                                      color: ColorManager.primary,
+                                    ),
                               onPressed: () {
                                 LoginCubit.get(context)
                                     .changePasswordVisibility();
@@ -144,8 +142,8 @@ class LoginView extends StatelessWidget {
                                   .textTheme
                                   .labelMedium!
                                   .copyWith(
-                                color: ColorManager.primary,
-                              ),
+                                    color: ColorManager.primary,
+                                  ),
                             ),
                           ),
                         ),
@@ -154,49 +152,54 @@ class LoginView extends StatelessWidget {
                         ),
                         ConditionalBuilder(
                             condition: (state is LoginLoadingState),
-                            builder: (context) =>
-                            Center(child: const CircularProgressIndicator()),
+                            builder: (context) => Center(
+                                child: const CircularProgressIndicator()),
                             fallback: (context) => MainButton(
-                              title: AppStrings.login,
-                              onPressed: () async{
-                                _hasInternet =await InternetConnectionChecker().hasConnection ;
-                                if(_hasInternet!){
-                                  if (LoginView._formKey.currentState!.validate()) {
-                                    LoginCubit.get(context).userLogin(
-                                        email: LoginView.emailController.text.trim(),
-                                        password: LoginView.passwordController.text);
-                                  }
-                                }else{
-                                  showToast(
-                                      text: AppStrings.checkNetwork,
-                                      state: ToastStates.SUCCESS
-                                  );
-                                }
-                              },
-                            )),
-                        SizedBox(height: mediaQueryHeight(context) / AppSize.s60),
+                                  title: AppStrings.login,
+                                  onPressed: () async {
+                                    _hasInternet =
+                                        await InternetConnectionChecker()
+                                            .hasConnection;
+                                    if (_hasInternet!) {
+                                      if (LoginView._formKey.currentState!
+                                          .validate()) {
+                                        LoginCubit.get(context).userLogin(
+                                            email: LoginView
+                                                .emailController.text
+                                                .trim(),
+                                            password: LoginView
+                                                .passwordController.text);
+                                      }
+                                    } else {
+                                      showToast(
+                                          text: AppStrings.checkNetwork,
+                                          state: ToastStates.SUCCESS);
+                                    }
+                                  },
+                                )),
+                        SizedBox(
+                            height: mediaQueryHeight(context) / AppSize.s60),
                         Center(
                             child: RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: AppStrings.doNotHaveAccount,
-                                    style: Theme.of(context).textTheme.labelMedium,
-                                  ),
-                                  TextSpan(
-                                    text: ' ${AppStrings.register}',
-                                    style: TextStyle(
-                                        color: ColorManager.primary,
-                                        fontWeight: FontWeight.bold),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        navigateTo(context, Routes.registerRoute);
-
-                                      },
-                                  ),
-                                ],
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: AppStrings.doNotHaveAccount,
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
-                            )),
+                              TextSpan(
+                                text: ' ${AppStrings.register}',
+                                style: TextStyle(
+                                    color: ColorManager.primary,
+                                    fontWeight: FontWeight.bold),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    navigateTo(context, Routes.registerRoute);
+                                  },
+                              ),
+                            ],
+                          ),
+                        )),
                       ],
                     ),
                   ),
@@ -207,6 +210,3 @@ class LoginView extends StatelessWidget {
         ));
   }
 }
-
-
-

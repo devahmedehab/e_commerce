@@ -1,4 +1,5 @@
 
+import '../../../Profile/view_model/profile_model.dart';
 import '../../../auth/login/view_model/login_model.dart';
 import '../../../favorites/view_model/change_fav_model.dart';
 
@@ -37,28 +38,17 @@ class ShopSuccessGetFavState extends ShopStates{
 }
 
 class ShopErrorGetFavState extends ShopStates {}
-
-class ShopLoadingUserDataState extends ShopStates{}
-
-class ShopSuccessUserDataState extends ShopStates{
-
-  final LoginModel loginModel;
-
-  ShopSuccessUserDataState(this.loginModel);
-}
-
-class UserDataErrorState extends ShopStates {}
-
-class UpdateLoadingState extends ShopStates{}
-
-class UpdateSuccessState extends ShopStates{
+class ShopLoadingUserDataState extends ShopStates {}
+class ShopSuccessUserDataState extends ShopStates {
 
   final LoginModel userModel;
 
-  UpdateSuccessState(this.userModel);
+  ShopSuccessUserDataState(this.userModel);
 }
 
-class UpdateErrorState extends ShopStates {}
+class ShopErrorUserDataState extends ShopStates {}
+
+
 
 
 

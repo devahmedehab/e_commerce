@@ -25,6 +25,7 @@ class AppStrings {
   static const name = "Name ";
   static const phone = "Phone ";
   static const profile = "Profile ";
+  static const editProfile = "Edit Profile ";
   static const update = "Update ";
   static const password = "Password ";
   static const confirmPassword = "Confirm Password ";
@@ -60,4 +61,6 @@ class AppStrings {
   static const String categories = "Categories";
   static const String favorite = "Favorite";
   static const String settings = "Settings";
+  static const String products = "Products";
+  static const String discount = "DISCOUNT";
 }

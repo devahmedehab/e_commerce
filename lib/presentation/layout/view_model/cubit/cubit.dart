@@ -1,12 +1,8 @@
-
-
 import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_commerce/presentation/layout/view_model/cubit/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../app/constants.dart';
 import '../../../../data/network/dio_helper.dart';
 import '../../../auth/login/view_model/login_model.dart';
@@ -163,42 +159,10 @@ class ShopCubit extends Cubit<ShopStates> {
       emit(ShopSuccessUserDataState(userModel!));
     }).catchError((error) {
       print(error.toString());
-      emit(UserDataErrorState());
+      emit(ShopErrorUserDataState());
     });
   }
 
-
-  void updateUserData({
-    required String name,
-    required String email,
-    required String phone,
-     String? image,
-
-  })
-  {
-    emit(UpdateLoadingState());
-
-
-    DioHelper.putData(
-      url: UPDATE_PROFILE,
-      token: token,
-      data: {
-        'name' : name,
-        'email' : email,
-        'phone' : phone,
-        'image' : image,
-      },
-    ).then((value) {
-
-      userModel = LoginModel.fromJson(value.data);
-      printFullText(userModel!.data!.name!);
-
-      emit(UpdateSuccessState(userModel!));
-    }).catchError((error) {
-      print(error.toString());
-      emit(UpdateErrorState());
-    });
-  }
   void status = showToast(
       text: AppStrings.connecting,
       state: ToastStates.SUCCESS);
@@ -224,6 +188,9 @@ class ShopCubit extends Cubit<ShopStates> {
 
     });
   }
+
+
+
 
 
 

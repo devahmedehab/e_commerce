@@ -10,6 +10,7 @@ class AppMargin {
 }
 
 class AppPadding {
+  static const double p5 = 5.0;
   static const double p8 = 8.0;
   static const double p10 = 10.0;
   static const double p12 = 12.0;
@@ -34,6 +35,7 @@ class AppSize {
   static const double s0 = 0.0;
   static const double s0_5 = 0.5;
   static const double s1 = 1.0;
+  static const double s1_3 = 1.3;
   static const double s1_5 = 1.5;
   static const double s2 = 2.0;
   static const double s3 = 3.0;
@@ -57,6 +59,7 @@ class AppSize {
   static const double s80 = 80.0;
   static const double s100 = 100.0;
   static const double s120 = 120.0;
+  static const double s200 = 200.0;
   static const double s500 = 500.0;
   static const int s700 = 700;
 

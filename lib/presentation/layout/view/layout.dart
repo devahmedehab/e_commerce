@@ -78,10 +78,8 @@ class _LayoutViewState extends State<LayoutView> {
     return BlocConsumer<ShopCubit, ShopStates>(
       listener: (context, state) {
         var model = ShopCubit.get(context).userModel!;
-        //Size size=MediaQuery.of(context).size;
         emailController.text = model.data!.email!;
         nameController.text = model.data!.name!;
-        // image = cubit.userModel!.data!.image!;
       },
       builder: (context, state) {
         var cubit = ShopCubit.get(context);
@@ -221,10 +219,8 @@ class _LayoutViewState extends State<LayoutView> {
                 onRefresh:() async {
                   await Future.delayed(Duration(microseconds: 500));
                   _refreshController.refreshFailed();
-                  //Restart.restartApp();
 
                   _hasInternet=await InternetConnectionChecker().hasConnection ;
-                 // final color = _hasInternet ? Colors.green :Colors.red;
                   final text = _hasInternet ? AppStrings.success: AppStrings.failed;
                   result= await Connectivity().checkConnectivity();
 
@@ -240,7 +236,8 @@ class _LayoutViewState extends State<LayoutView> {
                   else {
                     showToast(
                         text: text,
-                        state: ToastStates.SUCCESS
+                        state: ToastStates.ERROR
+
                     );
 
                   }
@@ -273,7 +270,8 @@ class _LayoutViewState extends State<LayoutView> {
                       label: AppStrings.favorite),
                 ],
               ),
-            ));
+            )
+        );
       },
     );
   }
