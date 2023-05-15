@@ -1,4 +1,8 @@
 
+
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_commerce/presentation/layout/view_model/cubit/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +16,9 @@ import '../../../favorites/view/favorites_screen.dart';
 import '../../../favorites/view_model/change_fav_model.dart';
 import '../../../favorites/view_model/fav_model.dart';
 import '../../../products/products_screen.dart';
+import '../../../resources/component.dart';
 import '../../../resources/end_point.dart';
-import 'package:e_commerce/presentation/profile/profile_view.dart';
+import '../../../resources/strings_manager.dart';
 import '../layout_model.dart';
 
 class ShopCubit extends Cubit<ShopStates> {
@@ -153,14 +158,12 @@ class ShopCubit extends Cubit<ShopStates> {
     ).then((value) {
       userModel = LoginModel.fromJson(value.data);
 
-
-
       printFullText(userModel!.data!.name!);
 
       emit(ShopSuccessUserDataState(userModel!));
     }).catchError((error) {
       print(error.toString());
-      emit(ShopErrorUserDataState());
+      emit(UserDataErrorState());
     });
   }
 
@@ -169,9 +172,11 @@ class ShopCubit extends Cubit<ShopStates> {
     required String name,
     required String email,
     required String phone,
+     String? image,
+
   })
   {
-    emit(ShopLoadingUpdateState());
+    emit(UpdateLoadingState());
 
 
     DioHelper.putData(
@@ -181,18 +186,45 @@ class ShopCubit extends Cubit<ShopStates> {
         'name' : name,
         'email' : email,
         'phone' : phone,
+        'image' : image,
       },
     ).then((value) {
 
       userModel = LoginModel.fromJson(value.data);
       printFullText(userModel!.data!.name!);
 
-      emit(ShopSuccessUpdateState(userModel!));
+      emit(UpdateSuccessState(userModel!));
     }).catchError((error) {
       print(error.toString());
-      emit(ShopErrorUpdateState());
+      emit(UpdateErrorState());
     });
   }
+  void status = showToast(
+      text: AppStrings.connecting,
+      state: ToastStates.SUCCESS);
+
+  late StreamSubscription _streamSubscription;
+  Connectivity  _connectivity =Connectivity();
+
+  void checkRealtimeConnection()async{
+    _streamSubscription = _connectivity.onConnectivityChanged.listen((event) {
+      if(event ==ConnectivityResult.mobile){
+        status = showToast(
+            text: AppStrings.connectionSuccess,
+            state: ToastStates.SUCCESS);
+      }else if(event ==ConnectivityResult.wifi){
+        status = showToast(
+            text: AppStrings.connectionSuccess,
+            state: ToastStates.SUCCESS);
+      }else{
+        status=showToast(
+            text:AppStrings.notConnected ,
+            state: ToastStates.ERROR);
+      }
+
+    });
+  }
+
 
 
 }

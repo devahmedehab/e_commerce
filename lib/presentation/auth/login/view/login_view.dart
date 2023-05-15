@@ -1,4 +1,3 @@
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce/data/network/cache_helper.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../../app/constants.dart';
 import '../../../resources/component.dart';
 import '../../../resources/routs_manager.dart';
@@ -16,20 +15,17 @@ import '../../../resources/values_manager.dart';
 import '../view_model/cubit/login_cubit.dart';
 import '../view_model/cubit/states.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   static final _formKey = new GlobalKey<FormState>();
   static final emailController = TextEditingController();
   static final passwordController = TextEditingController();
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
 
-class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
+    bool? _hasInternet =false;
     return BlocProvider(
         create: (BuildContext context) => LoginCubit(),
         child: BlocConsumer<LoginCubit, LoginStates>(
@@ -45,11 +41,12 @@ class _LoginViewState extends State<LoginView> {
                   token = state.loginModel.data!.token!;
                   Navigator.pushReplacementNamed(context, Routes.layoutRoute);
                 });
-              } else {
+              } else if(state is LoginErrorState)
+              {
                 print(state.loginModel.message);
 
                 showToast(
-                  text: state.loginModel.message!,
+                  text: LoginCubit.get(context).loginModel!.message!,
                   state: ToastStates.ERROR,
                 );
               }
@@ -73,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                           tag: AppStrings.textTag,
                           child: Text(AppStrings.login,
                             style:
-                            Theme.of(context).textTheme.bodyText1!.copyWith(
+                            Theme.of(context).textTheme.bodyLarge!.copyWith(
                                 color: ColorManager.primary,
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.w700,
@@ -158,16 +155,22 @@ class _LoginViewState extends State<LoginView> {
                         ConditionalBuilder(
                             condition: (state is LoginLoadingState),
                             builder: (context) =>
-                            const CircularProgressIndicator(),
+                            Center(child: const CircularProgressIndicator()),
                             fallback: (context) => MainButton(
                               title: AppStrings.login,
-                              onPressed: () {
-                                if (LoginView._formKey.currentState!.validate()) {
-                                  LoginCubit.get(context).userLogin(
-                                      email: LoginView.emailController.text.trim(),
-                                      password: LoginView.passwordController.text);
+                              onPressed: () async{
+                                _hasInternet =await InternetConnectionChecker().hasConnection ;
+                                if(_hasInternet!){
+                                  if (LoginView._formKey.currentState!.validate()) {
+                                    LoginCubit.get(context).userLogin(
+                                        email: LoginView.emailController.text.trim(),
+                                        password: LoginView.passwordController.text);
+                                  }
                                 }else{
-                                  return null;
+                                  showToast(
+                                      text: AppStrings.checkNetwork,
+                                      state: ToastStates.SUCCESS
+                                  );
                                 }
                               },
                             )),
@@ -204,5 +207,6 @@ class _LoginViewState extends State<LoginView> {
         ));
   }
 }
+
 
 

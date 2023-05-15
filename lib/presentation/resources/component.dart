@@ -41,7 +41,7 @@ Widget defaultFormField(
         hintText: hintText,
         labelText: labelText,
         errorText: errorText,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppSize.s25)),
         suffixIcon: suffix != null
             ? IconButton(
                 onPressed: () {

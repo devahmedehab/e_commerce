@@ -21,9 +21,11 @@ class AppStrings {
   static const skip = " Skip";
   //Authentication
 
-  static const email = "Email ";
+  static const email = "Email Address";
   static const name = "Name ";
   static const phone = "Phone ";
+  static const profile = "Profile ";
+  static const update = "Update ";
   static const password = "Password ";
   static const confirmPassword = "Confirm Password ";
   static const enterValidPassword = "Please enter a valid Password ";
@@ -33,9 +35,20 @@ class AppStrings {
   static const emailError = "Enter a valid email";
   static const passwordError = "Please enter your Password ";
   static const passwordError2 = "Password don\'t match";
+  static const nameEmpty = "name must not be empty";
+  static const emailEmpty = "email must not be empty";
+  static const phoneEmpty = "phone must not be empty";
   static const forgotPassword = "Forgot Password ";
   static const login = "Login ";
+  static const logOut = "Log Out ";
   static const register = "Register ";
+  static const connecting = "Connecting... ";
+  static const success = "Success ";
+  static const failed = "Failed ";
+  static const connectionSuccess = "Connection Success ";
+  static const notConnected = "Not Connected ";
+  static const  checkNetwork = "Please Check Your Network Connection" ;
+
 
   static const  doNotHaveAccount = "Don't have an Account?";
   static const  alreadyHaveAccount = "Already have an Account?";

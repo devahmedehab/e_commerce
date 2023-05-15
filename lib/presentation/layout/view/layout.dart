@@ -1,13 +1,17 @@
-import 'package:e_commerce/presentation/resources/assets_manager.dart';
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
 import 'package:e_commerce/presentation/resources/strings_manager.dart';
-import 'package:e_commerce/presentation/profile/profile_view.dart';
 import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../app/constants.dart';
+import '../../resources/assets_manager.dart';
 import '../../resources/component.dart';
 import '../../resources/routs_manager.dart';
 import '../view_model/cubit/cubit.dart';
@@ -24,15 +28,64 @@ final ZoomDrawerController z = ZoomDrawerController();
 final emailController = TextEditingController();
 final nameController = TextEditingController();
 
+
+
 class _LayoutViewState extends State<LayoutView> {
+  bool _hasInternet =false;
+ // final String image;
+
+  ConnectivityResult result = ConnectivityResult.none;
+
+  RefreshController _refreshController = RefreshController();
+
+
+
+  late StreamSubscription _streamSubscription;
+  Connectivity  _connectivity =Connectivity();
+
+  void checkRealtimeConnection()async{
+    _streamSubscription = _connectivity.onConnectivityChanged.listen((event) {
+      if(event ==ConnectivityResult.mobile){
+        ShopCubit.get(context).status = showToast(
+            text: AppStrings.connectionSuccess,
+            state: ToastStates.SUCCESS);
+      }else if(event ==ConnectivityResult.wifi){
+        ShopCubit.get(context).status = showToast(
+            text: AppStrings.connectionSuccess,
+            state: ToastStates.SUCCESS);
+      }else{
+        ShopCubit.get(context).status=showToast(
+            text:AppStrings.notConnected ,
+            state: ToastStates.ERROR);
+      }
+
+    });
+  }
+
+
+  @override
+  void initState() {
+    checkRealtimeConnection();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _streamSubscription.cancel();
+     super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        var model = ShopCubit.get(context).userModel!;
+        //Size size=MediaQuery.of(context).size;
+        emailController.text = model.data!.email!;
+        nameController.text = model.data!.name!;
+        // image = cubit.userModel!.data!.image!;
+      },
       builder: (context, state) {
         var cubit = ShopCubit.get(context);
-        nameController.text = ShopCubit.get(context).userModel!.data!.name!;
-        emailController.text = ShopCubit.get(context).userModel!.data!.email!;
+
         return ZoomDrawer(
             controller: z,
             borderRadius: 20,
@@ -55,8 +108,10 @@ class _LayoutViewState extends State<LayoutView> {
                               backgroundColor: Colors.deepPurpleAccent,
                               child: CircleAvatar(
                                   radius: 30,
-                                  backgroundImage:
-                                      AssetImage(ImageAssets.backGround)),
+                                  backgroundImage:  AssetImage(ImageAssets.male)
+
+
+                            )
                             ),
                             SizedBox(
                               width: 10,
@@ -160,7 +215,37 @@ class _LayoutViewState extends State<LayoutView> {
                   ),
                 ],
               ),
-              body: cubit.bottomScreen[cubit.currentIndex],
+              body: SmartRefresher(
+                child: cubit.bottomScreen[cubit.currentIndex],
+                controller: _refreshController,
+                onRefresh:() async {
+                  await Future.delayed(Duration(microseconds: 500));
+                  _refreshController.refreshFailed();
+                  //Restart.restartApp();
+
+                  _hasInternet=await InternetConnectionChecker().hasConnection ;
+                 // final color = _hasInternet ? Colors.green :Colors.red;
+                  final text = _hasInternet ? AppStrings.success: AppStrings.failed;
+                  result= await Connectivity().checkConnectivity();
+
+                  if(_hasInternet){
+                    ShopCubit.get(context).getUserData();
+                    ShopCubit.get(context).getFavoritesModel();
+                    ShopCubit.get(context).getCategoriesModel();
+                    showToast(
+                        text: text,
+                        state: ToastStates.SUCCESS
+                    );
+                  }
+                  else {
+                    showToast(
+                        text: text,
+                        state: ToastStates.SUCCESS
+                    );
+
+                  }
+                },
+              ),
               bottomNavigationBar: BottomNavigationBar(
                 selectedItemColor: ColorManager.primary,
                 backgroundColor: ColorManager.white,

@@ -18,7 +18,7 @@ import '../presentation/resources/routs_manager.dart';
 
 }*/
   String token = '';
-var id = '';
+   int? id ;
 void printFullText(String text) {
   final pattern = RegExp(AppStrings.regExp);
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
