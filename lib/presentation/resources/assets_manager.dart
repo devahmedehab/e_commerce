@@ -12,6 +12,8 @@ class ImageAssets{
   static const String male = "$imagePath/male.png";
   static const String female = "$imagePath/female.png";
   static const String backGround = "$imagePath/me.jpeg";
+  static const String logout = '$imagePath/drawer_icons/logout.svg';
+
 }
 
 

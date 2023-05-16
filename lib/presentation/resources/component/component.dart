@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../layout/view_model/cubit/cubit.dart';
-import 'assets_manager.dart';
+import '../../layout/view_model/cubit/cubit.dart';
+import '../assets_manager.dart';
 
 Widget defaultFormField(
         {Iterable<String>? autofill,

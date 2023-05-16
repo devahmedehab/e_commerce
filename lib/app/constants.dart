@@ -3,7 +3,7 @@ import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../data/network/cache_helper.dart';
-import '../presentation/resources/component.dart';
+import '../presentation/resources/component/component.dart';
 import '../presentation/resources/routs_manager.dart';
 
 /*class Constants{
@@ -17,7 +17,9 @@ import '../presentation/resources/routs_manager.dart';
 
 
 }*/
-  String token = '';
+  String ?token = '';
+  String name = '';
+  String email = '';
    int? id ;
 void printFullText(String text) {
   final pattern = RegExp(AppStrings.regExp);

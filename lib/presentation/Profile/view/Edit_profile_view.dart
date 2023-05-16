@@ -6,7 +6,7 @@ import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../resources/component.dart';
+import '../../resources/component/component.dart';
 
 class EditProfileView extends StatelessWidget {
   static final formKey = GlobalKey<FormState>();

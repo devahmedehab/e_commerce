@@ -6,11 +6,10 @@ import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:e_commerce/presentation/search/view/search_view.dart';
 import 'package:e_commerce/presentation/splash/splash_view.dart';
 import 'package:flutter/material.dart';
-
 import '../Profile/view/profile_view.dart';
 import '../auth/login/view/login_view.dart';
 import '../auth/register/view/register_view.dart';
-import '../settings_screen/settings_screen.dart';
+import '../settings/settings_screen.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -23,6 +22,9 @@ class Routes {
   static const String searchRouts = "/search";
   static const String profileRouts = "/profile";
   static const String editProfileRouts = "/editProfile";
+/*  static const String forgetPasswordRoute = "/forgetPassword";
+  static const String verifyPasswordRoute = "/verifyPassword";
+  static const String resetPasswordRoute = "/resetPassword";*/
 }
 
 class RouteGenerator {
@@ -46,10 +48,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) =>  EditProfileView());
       case Routes.settingsRoute:
         return MaterialPageRoute(builder: (_) =>  SettingsView());
+/*      case Routes.forgetPasswordRoute:
+       return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+      case Routes.verifyPasswordRoute:
+        return MaterialPageRoute(builder: (_) =>  VerifyPasswordView());
+      case Routes.resetPasswordRoute:
+        return MaterialPageRoute(builder: (_) =>  ResetPasswordView());*/
 
       /*
-      case Routes.forgetPasswordRoute:
-        return MaterialPageRoute(builder: (_) => const SettingsView());
 
       case Routes.storeDetailsRouts:
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());*/

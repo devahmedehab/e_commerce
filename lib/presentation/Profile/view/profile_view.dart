@@ -5,8 +5,8 @@ import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../app/constants.dart';
-import '../../resources/component.dart';
+import '../../resources/component/component.dart';
+import '../../resources/component/log_out_section.dart';
 import '../view_model/profile_cubit/profile_cubit.dart';
 import '../view_model/profile_cubit/profile_state.dart';
 
@@ -37,7 +37,7 @@ class ProfileView extends StatelessWidget {
                 IconButton(
                   onPressed: (){
                     ProfileCubit.get(context).getUserData();
-               navigateAndFinish(
+                    navigateAndFinish(
                         context,
                         Routes.editProfileRouts
                     );
@@ -57,41 +57,27 @@ class ProfileView extends StatelessWidget {
                   key: formKey,
                   child: Column(
                     children: [
-                      /*if (state is ProfileUpdateLoadingState)
-                        LinearProgressIndicator(),
                       SizedBox(
-                        height: AppSize.s40,
-                      ),*/
-                     /* CircleAvatar(
-                          radius: AppSize.s50,
-                          backgroundColor: Colors.deepPurpleAccent,
-                          child: CircleAvatar(
-                              radius: AppSize.s50,
-                              backgroundImage: AssetImage('')
-                            *//*NetworkImage(image)*//*
-                          )
-                      ),*/
-                     SizedBox(
                         height: AppSize.s20,
-                        ),
+                      ),
                       Text(nameController.text,
-                      style: TextStyle(color: ColorManager.primary,
-                      fontSize: AppSize.s16),),
-                       SizedBox(
-                            height: AppSize.s20,
-                          ),
-                          defaultFormField(
-                            controller: emailController,
-                            type: TextInputType.emailAddress,
-                            isClickable: false,
-                            validate: (String value) {
-                              if (value.isEmpty) {
-                                return AppStrings.emailEmpty;
-                              }
-                            },
-                            labelText: AppStrings.email,
-                            prefix: Icons.email,
-                          ),
+                        style: TextStyle(color: ColorManager.primary,
+                            fontSize: AppSize.s16),),
+                      SizedBox(
+                        height: AppSize.s20,
+                      ),
+                      defaultFormField(
+                        controller: emailController,
+                        type: TextInputType.emailAddress,
+                        isClickable: false,
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return AppStrings.emailEmpty;
+                          }
+                        },
+                        labelText: AppStrings.email,
+                        prefix: Icons.email,
+                      ),
                       SizedBox(
                         height: AppSize.s20,
                       ),
@@ -112,13 +98,7 @@ class ProfileView extends StatelessWidget {
                         height: AppSize.s20,
                       ),
 
-                      MainButton(
-                          title: AppStrings.logOut,
-                          color: ColorManager.amber,
-                          onPressed: (){
-                            signOut(context);
-                          }
-                      ),
+                      const LogOutSection(),
 
 
 

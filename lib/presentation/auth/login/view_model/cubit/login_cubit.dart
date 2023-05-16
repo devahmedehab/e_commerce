@@ -28,7 +28,8 @@ class LoginCubit extends Cubit<LoginStates>
         'password':password,
       },
     ).then((value) {
-      print(value.data);
+      print(value.data.toString());
+
      loginModel= LoginModel.fromJson(value.data);
      emit(LoginSuccessState(loginModel!));
     }).catchError((error){
@@ -45,4 +46,39 @@ class LoginCubit extends Cubit<LoginStates>
     suffix =isPassword? Icons.visibility_outlined:Icons.visibility_off_outlined;
     emit(ChangePasswordState());
   }
+  void newPass({
+    required String password,
+    required String email,
+
+
+
+
+
+  }) {
+    emit(NewPasswordLoadingState());
+    DioHelper.postData(
+      url: Password_Reset,
+      data: {
+
+        'password': password,
+        'email': email,
+
+      },
+    ).then((value) {
+      print(value.data);
+
+      loginModel = LoginModel.fromJson(value.data);
+
+
+      emit(NewPasswordSuccessState(loginModel!));
+    }).catchError((error) {
+      print(error.toString());
+      emit(NewPasswordErrorState(error.toString()));
+    });
+  }
+
+
+
+
+
 }

@@ -41,7 +41,9 @@ class AppStrings {
   static const phoneEmpty = "phone must not be empty";
   static const forgotPassword = "Forgot Password ";
   static const login = "Login ";
-  static const logOut = "Log Out ";
+  static const logOut = "Log out ";
+  static const confirmLogOut = "You will log out ";
+  static const sure = "Are You Sure? ";
   static const register = "Register ";
   static const connecting = "Connecting... ";
   static const success = "Success ";

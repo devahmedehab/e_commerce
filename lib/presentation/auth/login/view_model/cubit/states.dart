@@ -25,3 +25,22 @@ class LoginErrorState extends LoginStates
   LoginErrorState(this.error);
 }
 class ChangePasswordState extends LoginStates {}
+class NewPasswordLoadingState extends LoginStates {}
+
+
+class NewPasswordSuccessState extends LoginStates {
+
+  final LoginModel passwordModel;
+
+  NewPasswordSuccessState(this.passwordModel);
+}
+
+class NewPasswordErrorState extends LoginStates {
+
+  final String error;
+
+  NewPasswordErrorState(this.error);
+}
+class ChangePasswordV1State extends LoginStates {}
+class ChangePasswordV2State extends LoginStates {}
+class ChangePasswordV3State extends LoginStates {}

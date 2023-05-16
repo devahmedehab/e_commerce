@@ -19,6 +19,6 @@ const SendOTP ='send-otp';
 const VerifyEmail= 'verify-email';
 
 
-const Verify_Pass='verify-pass-otp';
+const Verify_Code='verify-code';
 
-const Password_Reset= 'password-reset';
+const Password_Reset= 'reset-password';

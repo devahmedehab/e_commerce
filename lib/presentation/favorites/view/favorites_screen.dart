@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../layout/view_model/cubit/cubit.dart';
 import '../../layout/view_model/cubit/state.dart';
-import '../../resources/component.dart';
+import '../../resources/component/component.dart';
 
 class FavoritesScreen extends StatelessWidget {
   @override

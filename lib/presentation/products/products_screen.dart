@@ -10,7 +10,7 @@ import '../categories/view_model/categories_model.dart';
 import '../layout/view_model/cubit/cubit.dart';
 import '../layout/view_model/cubit/state.dart';
 import '../layout/view_model/layout_model.dart';
-import '../resources/component.dart';
+import '../resources/component/component.dart';
 import '../resources/values_manager.dart';
 
 class ProductsScreen extends StatelessWidget {

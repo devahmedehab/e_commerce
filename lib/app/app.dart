@@ -31,8 +31,9 @@ class _MyAppState extends State<MyApp> {
           create: (BuildContext context) => ProfileCubit()
             ..getUserData()
 
-          ,
+
         ),
+
       ],
       child: MaterialApp(
 

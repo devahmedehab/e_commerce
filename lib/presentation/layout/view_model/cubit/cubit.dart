@@ -12,7 +12,7 @@ import '../../../favorites/view/favorites_screen.dart';
 import '../../../favorites/view_model/change_fav_model.dart';
 import '../../../favorites/view_model/fav_model.dart';
 import '../../../products/products_screen.dart';
-import '../../../resources/component.dart';
+import '../../../resources/component/component.dart';
 import '../../../resources/end_point.dart';
 import '../../../resources/strings_manager.dart';
 import '../layout_model.dart';

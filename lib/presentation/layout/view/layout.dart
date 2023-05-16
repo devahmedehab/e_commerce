@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
+import 'package:e_commerce/presentation/resources/component/log_out_section.dart';
 import 'package:e_commerce/presentation/resources/strings_manager.dart';
 import 'package:e_commerce/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../app/constants.dart';
 import '../../resources/assets_manager.dart';
-import '../../resources/component.dart';
+import '../../resources/component/component.dart';
 import '../../resources/routs_manager.dart';
 import '../view_model/cubit/cubit.dart';
 import '../view_model/cubit/state.dart';
@@ -178,9 +179,10 @@ class _LayoutViewState extends State<LayoutView> {
                   SizedBox(
                     height: 15,
                   ),
-                  buildListTile("Log out", Icons.logout_outlined, () {
-                    signOut(context);
-                  }),
+
+                    LogOutSection(),
+
+
                   SizedBox(
                     height: 15,
                   ),

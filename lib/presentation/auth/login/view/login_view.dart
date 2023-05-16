@@ -1,6 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce/data/network/cache_helper.dart';
-import 'package:e_commerce/presentation/layout/view_model/cubit/cubit.dart';
 import 'package:e_commerce/presentation/resources/color_manager.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
@@ -9,7 +8,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../../app/constants.dart';
-import '../../../resources/component.dart';
+import '../../../resources/component/component.dart';
 import '../../../resources/routs_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
@@ -69,10 +68,10 @@ class LoginView extends StatelessWidget {
                                 .textTheme
                                 .bodyLarge!
                                 .copyWith(
-                                    color: ColorManager.primary,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: AppSize.s30),
+                                color: ColorManager.primary,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w700,
+                                fontSize: AppSize.s30),
                           ),
                         ),
                         SizedBox(
@@ -102,13 +101,13 @@ class LoginView extends StatelessWidget {
                           suffixIcon: IconButton(
                               icon: LoginCubit.get(context).isPassword
                                   ? Icon(
-                                      Icons.visibility_off,
-                                      color: ColorManager.grey1,
-                                    )
+                                Icons.visibility_off,
+                                color: ColorManager.grey1,
+                              )
                                   : Icon(
-                                      Icons.visibility,
-                                      color: ColorManager.primary,
-                                    ),
+                                Icons.visibility,
+                                color: ColorManager.primary,
+                              ),
                               onPressed: () {
                                 LoginCubit.get(context)
                                     .changePasswordVisibility();
@@ -131,10 +130,7 @@ class LoginView extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: TextButton(
                             onPressed: () {
-                              /*navigateTo(
-                                  context: context,
-                                  screenRoute: Routes.forgetPasswordScreen,
-                                );*/
+
                             },
                             child: Text(
                               AppStrings.forgotPassword,
@@ -142,8 +138,8 @@ class LoginView extends StatelessWidget {
                                   .textTheme
                                   .labelMedium!
                                   .copyWith(
-                                    color: ColorManager.primary,
-                                  ),
+                                color: ColorManager.primary,
+                              ),
                             ),
                           ),
                         ),
@@ -155,51 +151,51 @@ class LoginView extends StatelessWidget {
                             builder: (context) => Center(
                                 child: const CircularProgressIndicator()),
                             fallback: (context) => MainButton(
-                                  title: AppStrings.login,
-                                  onPressed: () async {
-                                    _hasInternet =
-                                        await InternetConnectionChecker()
-                                            .hasConnection;
-                                    if (_hasInternet!) {
-                                      if (LoginView._formKey.currentState!
-                                          .validate()) {
-                                        LoginCubit.get(context).userLogin(
-                                            email: LoginView
-                                                .emailController.text
-                                                .trim(),
-                                            password: LoginView
-                                                .passwordController.text);
-                                      }
-                                    } else {
-                                      showToast(
-                                          text: AppStrings.checkNetwork,
-                                          state: ToastStates.SUCCESS);
-                                    }
-                                  },
-                                )),
+                              title: AppStrings.login,
+                              onPressed: () async {
+                                _hasInternet =
+                                await InternetConnectionChecker()
+                                    .hasConnection;
+                                if (_hasInternet!) {
+                                  if (LoginView._formKey.currentState!
+                                      .validate()) {
+                                    LoginCubit.get(context).userLogin(
+                                        email: LoginView
+                                            .emailController.text
+                                            .trim(),
+                                        password: LoginView
+                                            .passwordController.text);
+                                  }
+                                } else {
+                                  showToast(
+                                      text: AppStrings.checkNetwork,
+                                      state: ToastStates.SUCCESS);
+                                }
+                              },
+                            )),
                         SizedBox(
                             height: mediaQueryHeight(context) / AppSize.s60),
                         Center(
                             child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: AppStrings.doNotHaveAccount,
-                                style: Theme.of(context).textTheme.labelMedium,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: AppStrings.doNotHaveAccount,
+                                    style: Theme.of(context).textTheme.labelMedium,
+                                  ),
+                                  TextSpan(
+                                    text: ' ${AppStrings.register}',
+                                    style: TextStyle(
+                                        color: ColorManager.primary,
+                                        fontWeight: FontWeight.bold),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        navigateTo(context, Routes.registerRoute);
+                                      },
+                                  ),
+                                ],
                               ),
-                              TextSpan(
-                                text: ' ${AppStrings.register}',
-                                style: TextStyle(
-                                    color: ColorManager.primary,
-                                    fontWeight: FontWeight.bold),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    navigateTo(context, Routes.registerRoute);
-                                  },
-                              ),
-                            ],
-                          ),
-                        )),
+                            )),
                       ],
                     ),
                   ),
