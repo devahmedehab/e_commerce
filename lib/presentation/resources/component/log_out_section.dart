@@ -49,7 +49,7 @@ class LogOutSection extends StatelessWidget {
                   },
                 ),
                 CupertinoDialogAction(
-                  child: Text('Cancel',
+                  child: Text(AppStrings.cancel,
                       style: TextStyle(color: ColorManager.primary)),
                   onPressed: () {
                     Navigator.pop(context);

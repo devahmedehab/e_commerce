@@ -34,6 +34,7 @@ class AppStrings {
   static const nameError = "Please enter your Name ";
   static const phoneError = "Please enter your phone ";
   static const emailError = "Enter a valid email";
+  static const loginError = "Please enter a valid email or password";
   static const passwordError = "Please enter your Password ";
   static const passwordError2 = "Password don\'t match";
   static const nameEmpty = "name must not be empty";
@@ -48,6 +49,7 @@ class AppStrings {
   static const connecting = "Connecting... ";
   static const success = "Success ";
   static const failed = "Failed ";
+  static const cancel = "Cancel ";
   static const connectionSuccess = "Connection Success ";
   static const notConnected = "Not Connected ";
   static const  checkNetwork = "Please Check Your Network Connection" ;

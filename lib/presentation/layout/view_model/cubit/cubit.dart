@@ -165,7 +165,7 @@ class ShopCubit extends Cubit<ShopStates> {
 
   void status = showToast(
       text: AppStrings.connecting,
-      state: ToastStates.SUCCESS);
+      state: ToastStates.WARNING);
 
   late StreamSubscription _streamSubscription;
   Connectivity  _connectivity =Connectivity();

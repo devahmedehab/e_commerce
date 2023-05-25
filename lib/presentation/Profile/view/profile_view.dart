@@ -57,6 +57,14 @@ class ProfileView extends StatelessWidget {
                   key: formKey,
                   child: Column(
                     children: [
+                      CircleAvatar(
+                          radius: AppSize.s60,
+                          backgroundColor: Colors.deepPurpleAccent,
+                          child: CircleAvatar(
+                              radius: AppSize.s60,
+                              backgroundImage:  AssetImage(ImageAssets.male)
+                          )
+                      ),
                       SizedBox(
                         height: AppSize.s20,
                       ),
@@ -98,7 +106,7 @@ class ProfileView extends StatelessWidget {
                         height: AppSize.s20,
                       ),
 
-                      const LogOutSection(),
+                       LogOutSection(),
 
 
 

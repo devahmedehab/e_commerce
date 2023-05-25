@@ -25,34 +25,39 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool? _hasInternet = false;
-    return BlocProvider(
-        create: (BuildContext context) => LoginCubit(),
-        child: BlocConsumer<LoginCubit, LoginStates>(
-          listener: (context, state) {
-            if (state is LoginSuccessState) {
-              if (state.loginModel.status !) {
-                print(state.loginModel.message);
-                print(state.loginModel.data!.token);
-                CacheHelper.saveData(
-                  key: 'token',
-                  value: state.loginModel.data!.token,
-                ).then((value) {
-                  token = state.loginModel.data!.token!;
-                  Navigator.pushReplacementNamed(context, Routes.layoutRoute);
-                });
+    timeDilation=AppTime.t2;
+    return Scaffold(
+      body: BlocConsumer<LoginCubit, LoginStates>(
+            listener: (context, state) {
+              if (state is LoginSuccessState) {
+                if (state.loginModel.status ==true) {
+                  print(state.loginModel.message);
+                  print(state.loginModel.data!.token);
+                  CacheHelper.saveData(
+                    key: 'token',
+                    value: state.loginModel.data!.token,
+                  ).then((value) {
+                    token = state.loginModel.data!.token!;
+                    navigateAndFinish(context, Routes.layoutRoute);
+                  });
+                }
+                else {
+                  showToast(
+                      text: AppStrings.loginError,
+                      state: ToastStates.ERROR);
+                }
+
+              }else if(state is LoginErrorState) {
+                showToast(
+                  text: state.error.toString(),
+                  state: ToastStates.ERROR,
+                );
               }
 
-            }else  {
-              showToast(
-                text: LoginCubit.get(context).loginModel!.message!,
-                state: ToastStates.ERROR,
-              );
-            }
-          },
-          builder: (context, state) {
-            timeDilation = AppTime.t2;
-            return Scaffold(
-              body: Center(
+            },
+            builder: (context, state) {
+              timeDilation = AppTime.t2;
+              return Center(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.all(AppPadding.p15),
                   child: Form(
@@ -200,9 +205,10 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            );
-          },
-        ));
+
+              );
+            },
+          ),
+    );
   }
 }

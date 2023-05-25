@@ -1,9 +1,11 @@
 
+import 'package:e_commerce/presentation/auth/login/view_model/cubit/login_cubit.dart';
 import 'package:e_commerce/presentation/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../presentation/Profile/view_model/profile_cubit/profile_cubit.dart';
+import '../presentation/auth/register/view_model/cubit/register_cubit.dart';
 import '../presentation/layout/view_model/cubit/cubit.dart';
 import '../presentation/resources/routs_manager.dart';
 
@@ -33,6 +35,11 @@ class _MyAppState extends State<MyApp> {
 
 
         ),
+        BlocProvider(
+            create: (BuildContext context) => LoginCubit()
+
+        ),
+        BlocProvider(create: (BuildContext context) =>RegisterCubit()),
 
       ],
       child: MaterialApp(
